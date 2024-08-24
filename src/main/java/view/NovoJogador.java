@@ -9,25 +9,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class NovoJogador {
-    private JButton jogadorButton;
+    private JButton jogarButton;
     private JPanel Main;
     private JTextField jogadorInput;
 
     public NovoJogador() {
-        jogadorButton.addActionListener(new ActionListener() {
+        jogarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Salva o conteúdo do JTextField em uma String
                 String nomeJogador = jogadorInput.getText();
                 // Aqui você pode utilizar a string 'nomeJogador' conforme necessário
 
-                Jogador jogador = new Jogador(nomeJogador);
+                Jogador jogador = new Jogador(nomeJogador, 0);
                 ConnectionFactory conn = new ConnectionFactory();
 
                 JogoDao jogoDao = new JogoDao(conn.recuperarConexao());
                 jogoDao.salvar(jogador);
 
                 System.out.println("Nome do jogador: " + nomeJogador);
+
+
             }
         });
     }
@@ -39,5 +41,9 @@ public class NovoJogador {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack(); // Ajusta o tamanho da janela ao tamanho dos componentes
         frame.setVisible(true); // Torna a janela visível
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
